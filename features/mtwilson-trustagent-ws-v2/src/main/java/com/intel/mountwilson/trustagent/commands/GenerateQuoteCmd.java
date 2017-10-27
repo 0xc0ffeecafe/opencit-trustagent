@@ -139,6 +139,7 @@ public class GenerateQuoteCmd implements ICommand {
                 try {
                     String selectedPcrList = selectedPcrs.replaceAll("\\s+", ","); //change the format to use ',' to seperate the list
                     String quoteAlgWithPcrs = "";
+		    log.debug("selectedPcrList: " + selectedPcrList);
                     if (context.getSelectedPcrBanks() == null) {
                         quoteAlgWithPcrs = "0x0B:" + selectedPcrList;
                     } else {
@@ -150,6 +151,7 @@ public class GenerateQuoteCmd implements ICommand {
                             switch (pcrBanks[i]) {
                                 case "SHA1":
                                     quoteAlgWithPcrs += "0x04" + ":" + selectedPcrList;
+                                    quoteAlgWithPcrs += "+0x0B" + ":" + selectedPcrList;
                                     break;
                                 case "SHA256":
                                     quoteAlgWithPcrs += "0x0B" + ":" + selectedPcrList;
